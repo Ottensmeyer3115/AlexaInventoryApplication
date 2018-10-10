@@ -2,7 +2,7 @@
 	"version": "1.0",
 	"session": {
 		"new": false,
-		"sessionId": "amzn1.echo-api.session.a7645164-45be-485f-be65-0e9a7f5406e2",
+		"sessionId": "amzn1.echo-api.session.0623026b-8756-443d-837a-8772a930e100",
 		"application": {
 			"applicationId": "amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7"
 		},
@@ -23,14 +23,52 @@
 				"supportedInterfaces": {}
 			},
 			"apiEndpoint": "https://api.amazonalexa.com",
-			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTUzOTIxNTM2MSwiaWF0IjoxNTM5MjExNzYxLCJuYmYiOjE1MzkyMTE3NjEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdNVEtCUk1aN0NBNzNORDNCMlBGQU9SRFhDVFpNT1NCQVAyS1ZRTFdFRFZER0o1WDVBREJKTUNISVNSNE5PTEY0S0I2RkhQNlBWRDNFN1lCWllRNk82UUdXQ0Q3TVZERFBKNkRCSDVMRFdZT1hEREM3TzNXNjY3NUc3N003N0dUSElBWEZKTlNDT0kyRVFRUEQ2R1BJWkJEVURISkQyRFZZU0tHN0FVUTVNS1hNTVhaSEpKTyIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGUzRVUjNBRFFLTUxPUkg0QU1XSVM3VldaVkwyQkxVSVlRM0xQRFEyVFRNSkVEUTdWQUVDVDUyNUFXTEROVTdBNVg0VUE2WkJYTkVCVVFXU09GTFJNTzdGTDY1TTVUVUwyMlhRWkxSUExFSkJIT1YyQzY1UTVYVlk3VUhOV0NJN0hVQkw2VVNHTzRWUUVaVDNITllOVFNCS0RKT1hRRFJOWlZVMzVPWFFFWVNWNkFPNkdPNklSQTRUQkNGTVhGNlJJMjZBUFVLWE5JNjRGUSJ9fQ.JfK3_LMA2FqsxJVydBdSKaeJG3Z9mlvahcw9YYbrdtw9Z1RGpHtmhdiLI-0tHXBON9frxv_gwnUKm-yEfovHBYxvqkkkXtnYePX7GcmypxqRyWirSfyOZr4t-r45GIiGw5TDFQVtioy2w0s7yy5rS0lcwKpi3MOA8tjm9QVyA5C7TVt7cp0GejK-Ff8UP5T7VqPA0AlrVjF7Y9jUqIYwLDhXcPLmzu-T1EUYuNMEExDsFMhUPA1X2lQ3YP9jPgbxqX6h8WDUvwzQg4ZmxWlxLKwQFzIb4SM3dxvPevIg_UFEmDeWuMdhujgN1C-E3wrUq1I6d7gN0bwbPti6zdjXBQ"
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTUzOTIxNjM4MSwiaWF0IjoxNTM5MjEyNzgxLCJuYmYiOjE1MzkyMTI3ODEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdNVEtCUk1aN0NBNzNORDNCMlBGQU9SRFhDVFpNT1NCQVAyS1ZRTFdFRFZER0o1WDVBREJKTUNISVNSNE5PTEY0S0I2RkhQNlBWRDNFN1lCWllRNk82UUdXQ0Q3TVZERFBKNkRCSDVMRFdZT1hEREM3TzNXNjY3NUc3N003N0dUSElBWEZKTlNDT0kyRVFRUEQ2R1BJWkJEVURISkQyRFZZU0tHN0FVUTVNS1hNTVhaSEpKTyIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGUzRVUjNBRFFLTUxPUkg0QU1XSVM3VldaVkwyQkxVSVlRM0xQRFEyVFRNSkVEUTdWQUVDVDUyNUFXTEROVTdBNVg0VUE2WkJYTkVCVVFXU09GTFJNTzdGTDY1TTVUVUwyMlhRWkxSUExFSkJIT1YyQzY1UTVYVlk3VUhOV0NJN0hVQkw2VVNHTzRWUUVaVDNITllOVFNCS0RKT1hRRFJOWlZVMzVPWFFFWVNWNkFPNkdPNklSQTRUQkNGTVhGNlJJMjZBUFVLWE5JNjRGUSJ9fQ.edB5s60ToTzXaLLKGiN96uY2HRuWHoaJ36BFVaUyFG_uPzfWrN2r0ZDdShrxMq-BTaQ9mnfKX9UcKw4HsyjyTq8Ei8bXlERP_Lr1oMXp0jpz5XhxHAekBoKgJ3xwdsd3wtUAK-1-Hp8sghIb0nwR2c_QNrAAZDX3YVJnHwKLlK_NJIQ4W7vAAtcdrtnwhrHUB5mlPtPQiLBX0aTtSgRIwIHMKuViSGkDUQp_FJZZuKwP61Z166pV1bkdp9zFtwmgOMmVBqn8K2leDZm_BMjYUFYD2rWx6g4HDrj4wGWCqRtjFEbdkCXNpJgaymxKefYZsB__VnWQCtav78DclEvvFw"
 		}
 	},
 	"request": {
-		"type": "SessionEndedRequest",
-		"requestId": "amzn1.echo-api.request.40fb14ab-524a-4df2-966d-10b7a64fdce0",
-		"timestamp": "2018-10-10T22:49:21Z",
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.63d53d84-e9d9-4ac7-b9e0-ca5959931efa",
+		"timestamp": "2018-10-10T23:06:21Z",
 		"locale": "en-US",
-		"reason": "USER_INITIATED"
+		"intent": {
+			"name": "StoreItemIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"preposition": {
+					"name": "preposition",
+					"value": "in",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.prep",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "in",
+											"id": "13b5bfe96f3e2fe411c9f66f4a582adf"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"location": {
+					"name": "location",
+					"value": "the drawer",
+					"confirmationStatus": "NONE"
+				},
+				"object": {
+					"name": "object",
+					"value": "my keys",
+					"confirmationStatus": "NONE"
+				}
+			}
+		}
 	}
 }

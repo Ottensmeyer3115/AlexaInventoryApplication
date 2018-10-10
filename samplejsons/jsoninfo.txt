@@ -1,0 +1,8 @@
+simplestore:
+tell memory manager i put my keys in the drawer
+
+simpleget:
+tell memory manager where are my keys
+
+howmany:
+tell memory manager how many
