@@ -36,11 +36,9 @@ const handlers = {
 
       console.log('Attempting to read data');
       console.log('\n');
-      var number = docClient.scan(dynamoParams).promise().then(data => {
+      docClient.scan(dynamoParams).promise().then(data => {
         this.emit(':ask', "Memory manger is remembering " + data.Count + " items for you. Anything else?");
-        console.log(data);
       }).catch(err => console.error(err));
-
 
     },
     'StoreItemIntent': function () {
@@ -48,16 +46,40 @@ const handlers = {
         const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
         const speechOutput = "You put " + item + " " + location + ".";
 
-        this.response.cardRenderer(SKILL_NAME, speechOutput);
-        this.emit(':ask', speechOutput+" Anything else?");
+        const dynamoParams = {
+              TableName: "MemoryManagerDB",
+              Item: {"userid":12,"name":item,"location":location}
+        };
+
+        docClient.put(dynamoParams).promise().then(data => {
+          this.emit(':ask', speechOutput +" Anything else?");
+          console.log(data);
+        }).catch(err => console.error(err));
+
     },
     'RecallItemIntent': function () {
         const item = this.event.request.intent.slots.object.value;
-        const speechOutput = "You asked about " + item + ".";
 
-        this.response.cardRenderer(SKILL_NAME, speechOutput);
-        this.response.speak(speechOutput);
-        this.emit(':ask', speechOutput+" Anything else?");
+        const dynamoParams = {
+              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
+              ConsistentRead: true,
+              Select: "ALL_ATTRIBUTES",
+              KeyConditionExpression: '#userid = :userid and #name = :name',
+              ExpressionAttributeNames: {
+                  "#userid": "userid",
+                  "#name": "name"
+              },
+              ExpressionAttributeValues: {
+                  ":userid": 12,
+                  ":name":"plate"
+              },
+              TableName:"MemoryManagerDB"
+        };
+
+        docClient.query(dynamoParams).promise().then(data => {
+          var itemLocation = data.Items[0].location;
+          this.emit(':ask', "This item is " + itemLocation +". Anything else?");
+        }).catch(err => console.error(err));
     },
     'AMAZON.HelpIntent': function () {
         const speechOutput = HELP_MESSAGE;
