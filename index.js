@@ -50,7 +50,7 @@ const handlers = {
       // send the request to the database. The result will be stored in data
       docClient.scan(dynamoParams).promise().then(data => {
         // respond to the user with the result of the query
-        this.emit(':ask', "Memory manger is remembering " + data.Count + " items for you. Anything else?");
+        this.emit(':tell', "Memory manger is remembering " + data.Count + " items for you.");
       }).catch(err => console.error(err));
 
     },
@@ -77,7 +77,7 @@ const handlers = {
       // Send a request to insert the item to the database
       docClient.put(dynamoParams).promise().then(data => {
         // Respond to the user with the result
-        this.emit(':ask', speechOutput +" Anything else?");
+        this.emit(':tell', speechOutput);
         console.log(data);
       }).catch(err => console.error(err));
 
@@ -106,7 +106,7 @@ const handlers = {
               },
               ExpressionAttributeValues: {
                   ":userid": 12,
-                  ":name":"plate"
+                  ":name":item
               },
               TableName:"MemoryManagerDB"
       };
@@ -114,7 +114,7 @@ const handlers = {
       docClient.query(dynamoParams).promise().then(data => {
           var itemLocation = data.Items[0].location;
           // Alexa responds with the location of the item
-          this.emit(':ask', "This item is " + itemLocation +". Anything else?");
+          this.emit(':tell', "This item is " + itemLocation);
       }).catch(err => console.error(err));
     },
 
