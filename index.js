@@ -113,11 +113,13 @@ const handlers = {
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
-          
+
           if (resultItem != null) {
             // Alexa responds with the location of the item
             this.emit(':tell', "This item is " + resultItem.location);
           } else {
+            // If the item was not found in the database, Alexa tells then
+            // user that it doesn't know where the item is.
             this.emit(':tell', "I don't know where " + item + " is.")
           }
 
