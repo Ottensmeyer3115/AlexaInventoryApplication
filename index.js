@@ -12,6 +12,8 @@ const APP_ID = appId;
 
 const docClient = new awsSDK.DynamoDB.DocumentClient();
 
+const theuserid = 1001;
+
 // convert callback style functions to promises
 const dbScan = Promise.promisify(docClient.scan, docClient);
 const dbGet = Promise.promisify(docClient.get, docClient);
@@ -23,8 +25,19 @@ const HELP_MESSAGE = 'You can tell me where youve put an item or ask me to recal
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
-const handlers = {
+/* helper method to make article
+from opposite person's perspective
+*/
+function fliparticle(article) {
+  if (article=="my"){
+    article = "your";
+  } else if (article=="your"){
+    article = "my";
+  }
+  return article;
+}
 
+const handlers = {
     /*
      * LaunchRequest runs when Memory Manager is opened without invoking an intent
      * After it opens, Memory Manager will wait for a response from the user.
@@ -45,8 +58,6 @@ const handlers = {
             Count:"true"
           };
 
-      console.log('Attempting to read data');
-      console.log('\n');
       // send the request to the database. The result will be stored in data
       docClient.scan(dynamoParams).promise().then(data => {
         // respond to the user with the result of the query
@@ -62,16 +73,24 @@ const handlers = {
      */
     'StoreItemIntent': function () {
       // Get the item name and the location from user's intent invocation
-      const item = this.event.request.intent.slots.object.value;
+      var article;
+      if (this.event.request.intent.slots.article!=null){
+        article= this.event.request.intent.slots.article.value;
+        article = fliparticle(article);
+      } else {
+          article = "";
+      }
+      var item = this.event.request.intent.slots.object.value;
       const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
 
+
       // Construct the verbal response that Alexa will give
-      const speechOutput = "You put " + item + " " + location + ".";
+      const speechOutput = "You put "+ article+ " " + item + " " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":12,"name":item,"location":location}
+              Item: {"userid":theuserid,"name":item,"location":location}
       };
 
       // Send a request to insert the item to the database
@@ -92,6 +111,7 @@ const handlers = {
      */
     'RecallItemIntent': function () {
       // Get the item name from the request
+
       const item = this.event.request.intent.slots.object.value;
 
       // Construct the request for the database
@@ -105,16 +125,20 @@ const handlers = {
                   "#name": "name"
               },
               ExpressionAttributeValues: {
-                  ":userid": 12,
+                  ":userid": theuserid,
                   ":name":item
               },
               TableName:"MemoryManagerDB"
       };
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
-          var itemLocation = data.Items[0].location;
-          // Alexa responds with the location of the item
-          this.emit(':tell', "This item is " + itemLocation);
+          if (data.Items[0] != null){
+            var itemLocation = data.Items[0].location;
+            // Alexa responds with the location of the item
+            this.emit(':tell', "This item is " + itemLocation);
+        } else{
+          this.emit(':tell', "I couldn't find " + item);
+        }
       }).catch(err => console.error(err));
     },
 
