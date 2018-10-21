@@ -37,7 +37,7 @@
 			"slots": {
 				"object": {
 					"name": "object",
-					"value": "keys",
+					"value": "my keys",
 					"confirmationStatus": "NONE"
 				}
 			}

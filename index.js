@@ -26,8 +26,8 @@ const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
 /* helper method to make article
-from opposite person's perspective
-*/
+ *from opposite person's perspective
+ */
 function fliparticle(article) {
   if (article=="my"){
     article = "your";
@@ -36,6 +36,8 @@ function fliparticle(article) {
   }
   return article;
 }
+
+var theEvent;
 
 const handlers = {
     /*
@@ -90,7 +92,7 @@ const handlers = {
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location}
+              Item: {"userid":theEvent.session.user.userId,"name":item,"location":location}
       };
 
       // Send a request to insert the item to the database
@@ -116,7 +118,6 @@ const handlers = {
 
       // Construct the request for the database
       const dynamoParams = {
-              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
               ConsistentRead: true,
               Select: "ALL_ATTRIBUTES",
               KeyConditionExpression: '#userid = :userid and #name = :name',
@@ -125,11 +126,12 @@ const handlers = {
                   "#name": "name"
               },
               ExpressionAttributeValues: {
-                  ":userid": theuserid,
+                  ":userid": theEvent.session.user.userId,
                   ":name":item
               },
               TableName:"MemoryManagerDB"
       };
+
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
@@ -178,6 +180,7 @@ const handlers = {
 
 // Register the intents with alexa, so that they can be used by the user.
 exports.handler = function (event, context, callback) {
+    theEvent = event;
     const alexa = Alexa.handler(event, context, callback);
     alexa.APP_ID = APP_ID;
     alexa.registerHandlers(handlers);
