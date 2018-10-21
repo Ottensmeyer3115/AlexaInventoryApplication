@@ -24,8 +24,8 @@ const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
 /* helper method to make article
- *from opposite person's perspective
- */
+from opposite person's perspective
+*/
 function fliparticle(article) {
   if (article=="my"){
     article = "your";
@@ -35,7 +35,7 @@ function fliparticle(article) {
   return article;
 }
 
-var theEvent;
+var newevent;
 
 const handlers = {
     /*
@@ -57,7 +57,6 @@ const handlers = {
             AttributesToGet: "1",
             Count:"true"
           };
-
       // send the request to the database. The result will be stored in data
       docClient.scan(dynamoParams).promise().then(data => {
         // respond to the user with the result of the query
@@ -72,6 +71,8 @@ const handlers = {
      * store this information, along with the user's ID in the database.
      */
     'StoreItemIntent': function () {
+      var theuserid = newevent.session.user.userId;
+
       // Get the item name and the location from user's intent invocation
       var article;
       if (this.event.request.intent.slots.article!=null){
@@ -85,12 +86,12 @@ const handlers = {
 
 
       // Construct the verbal response that Alexa will give
-      const speechOutput = "I will remember that "+ article + " " + item + " is " + location + ".";
+      const speechOutput = "You put "+ article+ " " + item + " " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theEvent.session.user.userId,"name":item,"location":location}
+              Item: {"userid":theuserid,"name":item,"location":location,"article":article}
       };
 
       // Send a request to insert the item to the database
@@ -112,20 +113,13 @@ const handlers = {
     'RecallItemIntent': function () {
       // Get the item name from the request
 
-
       const item = this.event.request.intent.slots.object.value;
+      var theuserid = newevent.session.user.userId;
 
-      // Get and flip article from request
-      var article;
-      if (this.event.request.intent.slots.article!=null){
-        article= this.event.request.intent.slots.article.value;
-        article = fliparticle(article);
-      } else {
-          article = "";
-      }
 
       // Construct the request for the database
       const dynamoParams = {
+              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
               ConsistentRead: true,
               Select: "ALL_ATTRIBUTES",
               KeyConditionExpression: '#userid = :userid and #name = :name',
@@ -134,23 +128,22 @@ const handlers = {
                   "#name": "name"
               },
               ExpressionAttributeValues: {
-                  ":userid": theEvent.session.user.userId,
+                  ":userid": theuserid,
                   ":name":item
               },
               TableName:"MemoryManagerDB"
       };
-
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
 
           if (resultItem != null) {
             // Alexa responds with the location of the item
-            this.emit(':tell', article +" " + item + " is " + resultItem.location);
+            this.emit(':tell', "This item is " + resultItem.location);
           } else {
             // If the item was not found in the database, Alexa tells then
             // user that it doesn't know where the item is.
-            this.emit(':tell', "I don't know where " + article + item + " is.")
+            this.emit(':tell', "I don't know where " + item + " is.")
           }
 
 
@@ -188,7 +181,7 @@ const handlers = {
 
 // Register the intents with alexa, so that they can be used by the user.
 exports.handler = function (event, context, callback) {
-    theEvent = event;
+  newevent = event;
     const alexa = Alexa.handler(event, context, callback);
     alexa.APP_ID = APP_ID;
     alexa.registerHandlers(handlers);
