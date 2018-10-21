@@ -12,8 +12,6 @@ const APP_ID = appId;
 
 const docClient = new awsSDK.DynamoDB.DocumentClient();
 
-const theuserid = 1001;
-
 // convert callback style functions to promises
 const dbScan = Promise.promisify(docClient.scan, docClient);
 const dbGet = Promise.promisify(docClient.get, docClient);
