@@ -87,7 +87,7 @@ const handlers = {
 
 
       // Construct the verbal response that Alexa will give
-      const speechOutput = "You put "+ article+ " " + item + " " + location + ".";
+      const speechOutput = "I will remember that "+ article + " " + item + " is " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
@@ -114,7 +114,17 @@ const handlers = {
     'RecallItemIntent': function () {
       // Get the item name from the request
 
+
       const item = this.event.request.intent.slots.object.value;
+
+      // Get and flip article from request
+      var article;
+      if (this.event.request.intent.slots.article!=null){
+        article= this.event.request.intent.slots.article.value;
+        article = fliparticle(article);
+      } else {
+          article = "";
+      }
 
       // Construct the request for the database
       const dynamoParams = {
@@ -138,11 +148,11 @@ const handlers = {
 
           if (resultItem != null) {
             // Alexa responds with the location of the item
-            this.emit(':tell', "This item is " + resultItem.location);
+            this.emit(':tell', article +" " + item + " is " + resultItem.location);
           } else {
             // If the item was not found in the database, Alexa tells then
             // user that it doesn't know where the item is.
-            this.emit(':tell', "I don't know where " + item + " is.")
+            this.emit(':tell', "I don't know where " + article + item + " is.")
           }
 
 
