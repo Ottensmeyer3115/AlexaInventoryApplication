@@ -1,8 +1,8 @@
 {
 	"version": "1.0",
 	"session": {
-		"new": false,
-		"sessionId": "amzn1.echo-api.session.0623026b-8756-443d-837a-8772a930e100",
+		"new": true,
+		"sessionId": "amzn1.echo-api.session.7fa09dd3-21d6-48b9-a1a3-a61c277c5226",
 		"application": {
 			"applicationId": "amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7"
 		},
@@ -23,13 +23,13 @@
 				"supportedInterfaces": {}
 			},
 			"apiEndpoint": "https://api.amazonalexa.com",
-			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTUzOTIxNjM4MSwiaWF0IjoxNTM5MjEyNzgxLCJuYmYiOjE1MzkyMTI3ODEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdNVEtCUk1aN0NBNzNORDNCMlBGQU9SRFhDVFpNT1NCQVAyS1ZRTFdFRFZER0o1WDVBREJKTUNISVNSNE5PTEY0S0I2RkhQNlBWRDNFN1lCWllRNk82UUdXQ0Q3TVZERFBKNkRCSDVMRFdZT1hEREM3TzNXNjY3NUc3N003N0dUSElBWEZKTlNDT0kyRVFRUEQ2R1BJWkJEVURISkQyRFZZU0tHN0FVUTVNS1hNTVhaSEpKTyIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGUzRVUjNBRFFLTUxPUkg0QU1XSVM3VldaVkwyQkxVSVlRM0xQRFEyVFRNSkVEUTdWQUVDVDUyNUFXTEROVTdBNVg0VUE2WkJYTkVCVVFXU09GTFJNTzdGTDY1TTVUVUwyMlhRWkxSUExFSkJIT1YyQzY1UTVYVlk3VUhOV0NJN0hVQkw2VVNHTzRWUUVaVDNITllOVFNCS0RKT1hRRFJOWlZVMzVPWFFFWVNWNkFPNkdPNklSQTRUQkNGTVhGNlJJMjZBUFVLWE5JNjRGUSJ9fQ.edB5s60ToTzXaLLKGiN96uY2HRuWHoaJ36BFVaUyFG_uPzfWrN2r0ZDdShrxMq-BTaQ9mnfKX9UcKw4HsyjyTq8Ei8bXlERP_Lr1oMXp0jpz5XhxHAekBoKgJ3xwdsd3wtUAK-1-Hp8sghIb0nwR2c_QNrAAZDX3YVJnHwKLlK_NJIQ4W7vAAtcdrtnwhrHUB5mlPtPQiLBX0aTtSgRIwIHMKuViSGkDUQp_FJZZuKwP61Z166pV1bkdp9zFtwmgOMmVBqn8K2leDZm_BMjYUFYD2rWx6g4HDrj4wGWCqRtjFEbdkCXNpJgaymxKefYZsB__VnWQCtav78DclEvvFw"
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTU0MDE2NzE0NiwiaWF0IjoxNTQwMTYzNTQ2LCJuYmYiOjE1NDAxNjM1NDYsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdNVEtCUk1aN0NBNzNORDNCMlBGQU9SRFhDVFpNT1NCQVAyS1ZRTFdFRFZER0o1WDVBREJKTUNISVNSNE5PTEY0S0I2RkhQNlBWRDNFN1lCWllRNk82UUdXQ0Q3TVZERFBKNkRCSDVMRFdZT1hEREM3TzNXNjY3NUc3N003N0dUSElBWEZKTlNDT0kyRVFRUEQ2R1BJWkJEVURISkQyRFZZU0tHN0FVUTVNS1hNTVhaSEpKTyIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGUzRVUjNBRFFLTUxPUkg0QU1XSVM3VldaVkwyQkxVSVlRM0xQRFEyVFRNSkVEUTdWQUVDVDUyNUFXTEROVTdBNVg0VUE2WkJYTkVCVVFXU09GTFJNTzdGTDY1TTVUVUwyMlhRWkxSUExFSkJIT1YyQzY1UTVYVlk3VUhOV0NJN0hVQkw2VVNHTzRWUUVaVDNITllOVFNCS0RKT1hRRFJOWlZVMzVPWFFFWVNWNkFPNkdPNklSQTRUQkNGTVhGNlJJMjZBUFVLWE5JNjRGUSJ9fQ.FikySA-38xY4wjkkwXjSHlV_2Y71XHl3I0T-LR1G0hRnkzgzXaqE2-pJNf1uFN81lf7fPBm6PsFQBXEcCj9O4Zazk6dRf_MvE79hrVWzXv7ObYDce30EB7W5E5acgHQOzlSu9WyHlF-ZwZR9NH2L0NXCoPXVdivWHQvPAy2H75rhJTiQHBtHGkRXyvFd1ykZ0qFWjsWwKBT0lJoelvkHYrmcPansVu8_ulgkMQ8kNf-HNVLDKJesePKCeAqZSuJbiI_0GvVVmE_svT_0jvgDx9xDzkqUVMCfj2ZgTDT3XliXPil_dOc_zIRJRv339NbtgF7_qSCY3iPXm9kK8E5g5A"
 		}
 	},
 	"request": {
 		"type": "IntentRequest",
-		"requestId": "amzn1.echo-api.request.63d53d84-e9d9-4ac7-b9e0-ca5959931efa",
-		"timestamp": "2018-10-10T23:06:21Z",
+		"requestId": "amzn1.echo-api.request.c0d17c4a-845a-47e0-b862-058a025c1aa2",
+		"timestamp": "2018-10-21T23:12:26Z",
 		"locale": "en-US",
 		"intent": {
 			"name": "StoreItemIntent",
@@ -56,17 +56,44 @@
 							}
 						]
 					},
-					"confirmationStatus": "NONE"
+					"confirmationStatus": "NONE",
+					"source": "USER"
 				},
 				"location": {
 					"name": "location",
-					"value": "the drawer",
-					"confirmationStatus": "NONE"
+					"value": "the car",
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				},
+				"article": {
+					"name": "article",
+					"value": "my",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.article",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "my",
+											"id": "6864f389d9876436bc8778ff071d1b6c"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE",
+					"source": "USER"
 				},
 				"object": {
 					"name": "object",
-					"value": "my keys",
-					"confirmationStatus": "NONE"
+					"value": "keys",
+					"confirmationStatus": "NONE",
+					"source": "USER"
 				}
 			}
 		}
