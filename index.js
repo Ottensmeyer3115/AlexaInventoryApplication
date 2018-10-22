@@ -75,18 +75,20 @@ const handlers = {
 
       // Get the item name and the location from user's intent invocation
       var article;
+      var flippedarticle;
       if (this.event.request.intent.slots.article!=null){
         article= this.event.request.intent.slots.article.value;
-        article = fliparticle(article);
+        flippedarticle = fliparticle(article);
       } else {
           article = "";
+          flippedarticle = "";
       }
       var item = this.event.request.intent.slots.object.value;
       const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
 
 
       // Construct the verbal response that Alexa will give
-      const speechOutput = "You put "+ article+ " " + item + " " + location + ".";
+      const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
