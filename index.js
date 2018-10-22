@@ -76,13 +76,14 @@ const handlers = {
       // Get the item name and the location from user's intent invocation
       var article;
       if (this.event.request.intent.slots.article!=null){
-        article= this.event.request.intent.slots.article.value;
+        article = this.event.request.intent.slots.article.value;
         article = fliparticle(article);
       } else {
           article = "";
       }
       var item = this.event.request.intent.slots.object.value;
       const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
+      var time = this.event.request.timestamp;
 
 
       // Construct the verbal response that Alexa will give
@@ -91,7 +92,7 @@ const handlers = {
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"article":article}
+              Item: {"userid":theuserid,"name":item,"location":location,"article":article,"time":time}
       };
 
       // Send a request to insert the item to the database
