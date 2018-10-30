@@ -2,13 +2,12 @@
 // https://github.com/bignerdranch/developing-alexa-skills-solutions/blob/master/4_persistence/solution/cakebaker/database_helper.js
 
 'use strict';
+const appId = 'amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7';
+const APP_ID = appId;
 
 const Alexa = require('alexa-sdk');
 const awsSDK = require('aws-sdk');
 const Promise = require('es6-promisify');
-
-const appId = 'amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7';
-const APP_ID = appId;
 
 const docClient = new awsSDK.DynamoDB.DocumentClient();
 
@@ -77,15 +76,15 @@ const handlers = {
       var article;
       var flippedarticle;
       if (this.event.request.intent.slots.article!=null){
-        article= this.event.request.intent.slots.article.value;
+        article = this.event.request.intent.slots.article.value;
         flippedarticle = fliparticle(article);
       } else {
           article = "";
           flippedarticle = "";
       }
       var item = this.event.request.intent.slots.object.value;
-      const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
-
+      const location = this.event.request.intent.slots.location.value;
+      const timestamp = this.event.request.timestamp;
 
       // Construct the verbal response that Alexa will give
       const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
@@ -93,7 +92,8 @@ const handlers = {
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"article":article}
+              Item: {"userid":theuserid,"name":item,"location":location,"article":article,
+                    "timestamp":timestamp}
       };
 
       // Send a request to insert the item to the database
@@ -131,7 +131,7 @@ const handlers = {
               },
               ExpressionAttributeValues: {
                   ":userid": theuserid,
-                  ":name":item
+                  ":name":item,
               },
               TableName:"MemoryManagerDB"
       };

@@ -2,12 +2,12 @@
 	"version": "1.0",
 	"session": {
 		"new": true,
-		"sessionId": "amzn1.echo-api.session.7fa09dd3-21d6-48b9-a1a3-a61c277c5226",
+		"sessionId": "amzn1.echo-api.session.6cb8acc9-770a-47f0-813a-e5cdd719017d",
 		"application": {
 			"applicationId": "amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7"
 		},
 		"user": {
-			"userId": "amzn1.ask.account.AFS4UR3ADQKMLORH4AMWIS7VWZVL2BLUIYQ3LPDQ2TTMJEDQ7VAECT525AWLDNU7A5X4UA6ZBXNEBUQWSOFLRMO7FL65M5TUL22XQZLRPLEJBHOV2C65Q5XVY7UHNWCI7HUBL6USGO4VQEZT3HNYNTSBKDJOXQDRNZVU35OXQEYSV6AO6GO6IRA4TBCFMXF6RI26APUKXNI64FQ"
+			"userId": "amzn1.ask.account.AFISATW7ABZHW24HFGFTIOPCPU7ZOT23EUYIOBPHMNXC3OGTWOY3HY3IKSQ3KG3C7N2ZNKC7CWHGYVMRCRGZLIYCLFPCNJRQWIDFMSPRDQWM5BMFSYGOJCXVK4CR5I3ESVEWGNXFUNMCVSLIZX47LKHECPJJP47VB2BYZ6VZQGL3AFOP35SHEM55XRG4LHD7XO547OANV5CF2XA"
 		}
 	},
 	"context": {
@@ -16,82 +16,99 @@
 				"applicationId": "amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7"
 			},
 			"user": {
-				"userId": "amzn1.ask.account.AFS4UR3ADQKMLORH4AMWIS7VWZVL2BLUIYQ3LPDQ2TTMJEDQ7VAECT525AWLDNU7A5X4UA6ZBXNEBUQWSOFLRMO7FL65M5TUL22XQZLRPLEJBHOV2C65Q5XVY7UHNWCI7HUBL6USGO4VQEZT3HNYNTSBKDJOXQDRNZVU35OXQEYSV6AO6GO6IRA4TBCFMXF6RI26APUKXNI64FQ"
+				"userId": "amzn1.ask.account.AFISATW7ABZHW24HFGFTIOPCPU7ZOT23EUYIOBPHMNXC3OGTWOY3HY3IKSQ3KG3C7N2ZNKC7CWHGYVMRCRGZLIYCLFPCNJRQWIDFMSPRDQWM5BMFSYGOJCXVK4CR5I3ESVEWGNXFUNMCVSLIZX47LKHECPJJP47VB2BYZ6VZQGL3AFOP35SHEM55XRG4LHD7XO547OANV5CF2XA"
 			},
 			"device": {
-				"deviceId": "amzn1.ask.device.AGMTKBRMZ7CA73ND3B2PFAORDXCTZMOSBAP2KVQLWEDVDGJ5X5ADBJMCHISR4NOLF4KB6FHP6PVD3E7YBZYQ6O6QGWCD7MVDDPJ6DBH5LDWYOXDDC7O3W6675G77M77GTHIAXFJNSCOI2EQQPD6GPIZBDUDHJD2DVYSKG7AUQ5MKXMMXZHJJO",
+				"deviceId": "amzn1.ask.device.AGOMYKM65NEQ2JZVSPU2ZYI7KZI7CLJM5O24RYRPY2BTJOGICAHERIVWEQYQ4IMX6NHYBHHHCIJYINADBZUM7KA57IBJ7LSOK6XKHUVWWC56SLKNKWBKK2S4AOI4XQCQKQNQK3CT4EDZ5NENCLS3BAK4JNQRAWPFOWCBZU2HK5BEV3NBZ2WFM",
 				"supportedInterfaces": {}
 			},
 			"apiEndpoint": "https://api.amazonalexa.com",
-			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTU0MDE2NzE0NiwiaWF0IjoxNTQwMTYzNTQ2LCJuYmYiOjE1NDAxNjM1NDYsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdNVEtCUk1aN0NBNzNORDNCMlBGQU9SRFhDVFpNT1NCQVAyS1ZRTFdFRFZER0o1WDVBREJKTUNISVNSNE5PTEY0S0I2RkhQNlBWRDNFN1lCWllRNk82UUdXQ0Q3TVZERFBKNkRCSDVMRFdZT1hEREM3TzNXNjY3NUc3N003N0dUSElBWEZKTlNDT0kyRVFRUEQ2R1BJWkJEVURISkQyRFZZU0tHN0FVUTVNS1hNTVhaSEpKTyIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGUzRVUjNBRFFLTUxPUkg0QU1XSVM3VldaVkwyQkxVSVlRM0xQRFEyVFRNSkVEUTdWQUVDVDUyNUFXTEROVTdBNVg0VUE2WkJYTkVCVVFXU09GTFJNTzdGTDY1TTVUVUwyMlhRWkxSUExFSkJIT1YyQzY1UTVYVlk3VUhOV0NJN0hVQkw2VVNHTzRWUUVaVDNITllOVFNCS0RKT1hRRFJOWlZVMzVPWFFFWVNWNkFPNkdPNklSQTRUQkNGTVhGNlJJMjZBUFVLWE5JNjRGUSJ9fQ.FikySA-38xY4wjkkwXjSHlV_2Y71XHl3I0T-LR1G0hRnkzgzXaqE2-pJNf1uFN81lf7fPBm6PsFQBXEcCj9O4Zazk6dRf_MvE79hrVWzXv7ObYDce30EB7W5E5acgHQOzlSu9WyHlF-ZwZR9NH2L0NXCoPXVdivWHQvPAy2H75rhJTiQHBtHGkRXyvFd1ykZ0qFWjsWwKBT0lJoelvkHYrmcPansVu8_ulgkMQ8kNf-HNVLDKJesePKCeAqZSuJbiI_0GvVVmE_svT_0jvgDx9xDzkqUVMCfj2ZgTDT3XliXPil_dOc_zIRJRv339NbtgF7_qSCY3iPXm9kK8E5g5A"
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTU0MDg2NTIzMiwiaWF0IjoxNTQwODYxNjMyLCJuYmYiOjE1NDA4NjE2MzIsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdPTVlLTTY1TkVRMkpaVlNQVTJaWUk3S1pJN0NMSk01TzI0UllSUFkyQlRKT0dJQ0FIRVJJVldFUVlRNElNWDZOSFlCSEhIQ0lKWUlOQURCWlVNN0tBNTdJQko3TFNPSzZYS0hVVldXQzU2U0xLTktXQktLMlM0QU9JNFhRQ1FLUU5RSzNDVDRFRFo1TkVOQ0xTM0JBSzRKTlFSQVdQRk9XQ0JaVTJISzVCRVYzTkJaMldGTSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGSVNBVFc3QUJaSFcyNEhGR0ZUSU9QQ1BVN1pPVDIzRVVZSU9CUEhNTlhDM09HVFdPWTNIWTNJS1NRM0tHM0M3TjJaTktDN0NXSEdZVk1SQ1JHWkxJWUNMRlBDTkpSUVdJREZNU1BSRFFXTTVCTUZTWUdPSkNYVks0Q1I1STNFU1ZFV0dOWEZVTk1DVlNMSVpYNDdMS0hFQ1BKSlA0N1ZCMkJZWjZWWlFHTDNBRk9QMzVTSEVNNTVYUkc0TEhEN1hPNTQ3T0FOVjVDRjJYQSJ9fQ.UBHZC5GkjiI1igMFrW3xvcx70uzzAk0Yd70Bq6_5_7ShshneBJP8jByGj7Fd151H9vMXabHDaL9bjFXZSXRAYsUQvFMGY8Vsi-scCzzJQ00GyCun99rOsdn3Ul7y8lyCoKOepnqFjR_yYCJHrzW93Sk_ACfiVvaW0SRepc0cX7LGO9ias8goJkI5_79hSx4L8fsRaQHHK25LElNkajFw3hrViegd4pTwZ_EioW7RnzVAra3ehiRmH-_wx_9-b7axIY-PCwl30hjAkKDtrTQDHR2uB6VvibS_r7Fw9XJ7xjLHbHI0CSmLaBy8zbBJWXJsP_6g-VEh7vXYO_lIcrIGqg"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			]
 		}
 	},
 	"request": {
 		"type": "IntentRequest",
-		"requestId": "amzn1.echo-api.request.c0d17c4a-845a-47e0-b862-058a025c1aa2",
-		"timestamp": "2018-10-21T23:12:26Z",
+		"requestId": "amzn1.echo-api.request.aaa566df-d9f9-494d-bf45-e18b8309d221",
+		"timestamp": "2018-10-30T01:07:12Z",
 		"locale": "en-US",
 		"intent": {
 			"name": "StoreItemIntent",
 			"confirmationStatus": "NONE",
 			"slots": {
-				"preposition": {
-					"name": "preposition",
-					"value": "in",
+				"location": {
+					"name": "location",
+					"value": "on shelf",
 					"resolutions": {
 						"resolutionsPerAuthority": [
 							{
-								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.prep",
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.location",
 								"status": {
 									"code": "ER_SUCCESS_MATCH"
 								},
 								"values": [
 									{
 										"value": {
-											"name": "in",
-											"id": "13b5bfe96f3e2fe411c9f66f4a582adf"
+											"name": "on my shelf",
+											"id": "1afac0e97b0adb5d20bf08bab0b1f0b3"
+										}
+									},
+									{
+										"value": {
+											"name": "on the shelf",
+											"id": "dbf3bc3dc7c18677d083bcfa06f4522e"
 										}
 									}
 								]
 							}
 						]
 					},
-					"confirmationStatus": "NONE",
-					"source": "USER"
-				},
-				"location": {
-					"name": "location",
-					"value": "the car",
 					"confirmationStatus": "NONE",
 					"source": "USER"
 				},
 				"article": {
 					"name": "article",
-					"value": "my",
+					"confirmationStatus": "NONE"
+				},
+				"object": {
+					"name": "object",
+					"value": "book",
 					"resolutions": {
 						"resolutionsPerAuthority": [
 							{
-								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.article",
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.everday",
 								"status": {
 									"code": "ER_SUCCESS_MATCH"
 								},
 								"values": [
 									{
 										"value": {
-											"name": "my",
-											"id": "6864f389d9876436bc8778ff071d1b6c"
+											"name": "book",
+											"id": "821f03288846297c2cf43c34766a38f7"
 										}
 									}
 								]
 							}
 						]
 					},
-					"confirmationStatus": "NONE",
-					"source": "USER"
-				},
-				"object": {
-					"name": "object",
-					"value": "keys",
 					"confirmationStatus": "NONE",
 					"source": "USER"
 				}
