@@ -118,8 +118,8 @@ const handlers = {
      * additional information.)
      */
     'RecallItemIntent': function () {
+      
       // Get the item name from the request
-
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
@@ -162,15 +162,14 @@ const handlers = {
      * user that the object was not found in the DB.
      */
     'DeleteItemIntent': function () {
-      // Get the item name from the request
 
+      // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
 
       // Construct the request for the database
       const dynamoParams = {
-              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
               ConsistentRead: true,
               Select: "ALL_ATTRIBUTES",
               KeyConditionExpression: '#userid = :userid and #name = :name',
