@@ -2,13 +2,12 @@
 // https://github.com/bignerdranch/developing-alexa-skills-solutions/blob/master/4_persistence/solution/cakebaker/database_helper.js
 
 'use strict';
+const appId = 'amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7';
+const APP_ID = appId;
 
 const Alexa = require('alexa-sdk');
 const awsSDK = require('aws-sdk');
 const Promise = require('es6-promisify');
-
-const appId = 'amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7';
-const APP_ID = appId;
 
 const docClient = new awsSDK.DynamoDB.DocumentClient();
 
@@ -75,24 +74,26 @@ const handlers = {
 
       // Get the item name and the location from user's intent invocation
       var article;
+      var flippedarticle;
       if (this.event.request.intent.slots.article!=null){
         article = this.event.request.intent.slots.article.value;
-        article = fliparticle(article);
+        flippedarticle = fliparticle(article);
       } else {
           article = "";
+          flippedarticle = "";
       }
       var item = this.event.request.intent.slots.object.value;
-      const location = this.event.request.intent.slots.preposition.value + " " +this.event.request.intent.slots.location.value;
-      var time = this.event.request.timestamp;
-
+      const location = this.event.request.intent.slots.location.value;
+      const timestamp = this.event.request.timestamp;
 
       // Construct the verbal response that Alexa will give
-      const speechOutput = "You put "+ article + " " + item + " " + location + ".";
+      const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"article":article,"time":time}
+              Item: {"userid":theuserid,"name":item,"location":location,"article":article,
+                    "timestamp":timestamp}
       };
 
       // Send a request to insert the item to the database
@@ -130,7 +131,7 @@ const handlers = {
               },
               ExpressionAttributeValues: {
                   ":userid": theuserid,
-                  ":name":item
+                  ":name":item,
               },
               TableName:"MemoryManagerDB"
       };
@@ -148,49 +149,6 @@ const handlers = {
           }
 
 
-      }).catch(err => console.error(err));
-    },
-
-    /*
-     * The DeleteItem intent is used to delete an entry from the database on
-     * account of the items name. Alexa will respond confirming the deletion.
-     *
-     */
-    'DeleteItemIntent': function () {
-      // Get the item name from the request
-
-      const item = this.event.request.intent.slots.object.value;
-      var theuserid = newevent.session.user.userId;
-
-      // Construct the request for the database
-      const dynamoParams = {
-              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
-              ConsistentRead: true,
-              Select: "ALL_ATTRIBUTES",
-              KeyConditionExpression: '#userid = :userid and #name = :name',
-              ExpressionAttributeNames: {
-                  "#userid": "userid",
-                  "#name": "name"
-              },
-              ExpressionAttributeValues: {
-                  ":userid": theuserid,
-                  ":name":item
-              },
-              TableName:"MemoryManagerDB"
-      };
-      // Send the request to find the item from the database
-      docClient.query(dynamoParams).promise().then(data => {
-          var resultItem = data.Items[0];
-
-          if (resultItem != null) {
-            // If the item exists, Alexa will respond about said item and delete it.
-            this.emit(':tell', "I've deleted " + resultItem.article + " " + resultItem.name);
-            docClient.delete(dynamoParams).promise().catch(err => console.error(err));
-          } else {
-            // If the item was not found in the database, Alexa tells then
-            // user that it doesn't remember the item.
-            this.emit(':tell', "I have no record of " +  article + " " + name)
-          }
       }).catch(err => console.error(err));
     },
 
