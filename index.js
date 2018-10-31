@@ -34,6 +34,15 @@ function fliparticle(article) {
   return article;
 }
 
+/*
+  This method will take a timestamp and
+  convert it into a readable time using a
+  regex.
+*/
+function time(timestamp){
+
+}
+
 var newevent;
 
 const handlers = {
@@ -118,7 +127,7 @@ const handlers = {
      * additional information.)
      */
     'RecallItemIntent': function () {
-      
+
       // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
