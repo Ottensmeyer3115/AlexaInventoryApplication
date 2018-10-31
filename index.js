@@ -87,7 +87,7 @@ const handlers = {
 
 
       // Construct the verbal response that Alexa will give
-      const speechOutput = "You put "+ article+ " " + item + " " + location + ".";
+      const speechOutput = "You put "+ article + " " + item + " " + location + ".";
 
       // Construct the database request
       const dynamoParams = {
@@ -148,6 +148,49 @@ const handlers = {
           }
 
 
+      }).catch(err => console.error(err));
+    },
+
+    /*
+     * The DeleteItem intent is used to delete an entry from the database on
+     * account of the items name. Alexa will respond confirming the deletion.
+     *
+     */
+    'DeleteItemIntent': function () {
+      // Get the item name from the request
+
+      const item = this.event.request.intent.slots.object.value;
+      var theuserid = newevent.session.user.userId;
+
+      // Construct the request for the database
+      const dynamoParams = {
+              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
+              ConsistentRead: true,
+              Select: "ALL_ATTRIBUTES",
+              KeyConditionExpression: '#userid = :userid and #name = :name',
+              ExpressionAttributeNames: {
+                  "#userid": "userid",
+                  "#name": "name"
+              },
+              ExpressionAttributeValues: {
+                  ":userid": theuserid,
+                  ":name":item
+              },
+              TableName:"MemoryManagerDB"
+      };
+      // Send the request to find the item from the database
+      docClient.query(dynamoParams).promise().then(data => {
+          var resultItem = data.Items[0];
+
+          if (resultItem != null) {
+            // If the item exists, Alexa will respond about said item and delete it.
+            this.emit(':tell', "I've deleted " + resultItem.article + " " + resultItem.name);
+            docClient.delete(dynamoParams).promise().catch(err => console.error(err));
+          } else {
+            // If the item was not found in the database, Alexa tells then
+            // user that it doesn't remember the item.
+            this.emit(':tell', "I have no record of " +  article + " " + name)
+          }
       }).catch(err => console.error(err));
     },
 
