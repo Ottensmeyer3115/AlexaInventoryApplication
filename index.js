@@ -72,8 +72,11 @@ const handlers = {
     'StoreItemIntent': function () {
       var theuserid = newevent.session.user.userId;
 
-      // Get the item name and the location from user's intent invocation
       var article;
+
+      // Determine whether the article needs to be flipped and flip it.
+      //  for example, if a user described an object with "my", alexa should
+      //  respond with "your" (and visa versa)
       var flippedarticle;
       if (this.event.request.intent.slots.article!=null){
         article = this.event.request.intent.slots.article.value;
@@ -82,6 +85,8 @@ const handlers = {
           article = "";
           flippedarticle = "";
       }
+
+      // Get the item name and the location from user's intent invocation
       var item = this.event.request.intent.slots.object.value;
       const location = this.event.request.intent.slots.location.value;
       const timestamp = this.event.request.timestamp;
@@ -121,7 +126,6 @@ const handlers = {
 
       // Construct the request for the database
       const dynamoParams = {
-              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
               ConsistentRead: true,
               Select: "ALL_ATTRIBUTES",
               KeyConditionExpression: '#userid = :userid and #name = :name',
