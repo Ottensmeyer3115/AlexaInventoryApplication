@@ -34,6 +34,29 @@ function fliparticle(article) {
   return article;
 }
 
+/*
+* This item constructs the parameters for an item name and a userid
+*/
+function createGetParams(item, theuserid){
+    // Construct the request for the database
+    const dynamoParams = {
+            /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
+            ConsistentRead: true,
+            Select: "ALL_ATTRIBUTES",
+            KeyConditionExpression: '#userid = :userid and #name = :name',
+            ExpressionAttributeNames: {
+                "#userid": "userid",
+                "#name": "name"
+            },
+            ExpressionAttributeValues: {
+                ":userid": theuserid,
+                ":name":item,
+            },
+            TableName:"MemoryManagerDB"
+    };
+    return dynamoParams;
+}
+
 var newevent;
 
 const handlers = {
@@ -75,7 +98,7 @@ const handlers = {
       // Get the item name and the location from user's intent invocation
       var article;
       var flippedarticle;
-      if (this.event.request.intent.slots.article!=null){
+      if (this.event.request.intent.slots.article!=null && !this.event.request.intent.slots.article){
         article = this.event.request.intent.slots.article.value;
         flippedarticle = fliparticle(article);
       } else {
@@ -83,17 +106,18 @@ const handlers = {
           flippedarticle = "";
       }
       var item = this.event.request.intent.slots.object.value;
-      const location = this.event.request.intent.slots.location.value;
+      const location = this.event.request.intent.slots.prep.value + " "+
+                        this.event.request.intent.slots.location.value;
       const timestamp = this.event.request.timestamp;
 
       // Construct the verbal response that Alexa will give
       const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
+      console.log(speechOutput);
 
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"article":article,
-                    "timestamp":timestamp}
+              Item: {"userid":theuserid,"name":item,"location":location,"timestamp":timestamp}
       };
 
       // Send a request to insert the item to the database
@@ -118,23 +142,8 @@ const handlers = {
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
+      var dynamoParams = createGetParams(item, theuserid);
 
-      // Construct the request for the database
-      const dynamoParams = {
-              /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
-              ConsistentRead: true,
-              Select: "ALL_ATTRIBUTES",
-              KeyConditionExpression: '#userid = :userid and #name = :name',
-              ExpressionAttributeNames: {
-                  "#userid": "userid",
-                  "#name": "name"
-              },
-              ExpressionAttributeValues: {
-                  ":userid": theuserid,
-                  ":name":item,
-              },
-              TableName:"MemoryManagerDB"
-      };
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
