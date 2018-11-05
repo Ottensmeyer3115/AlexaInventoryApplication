@@ -55,6 +55,14 @@ function createGetParams(item, theuserid){
             TableName:"MemoryManagerDB"
     };
     return dynamoParams;
+
+/*
+  This method will take a timestamp and
+  convert it into a readable time using a
+  regex.
+*/
+function time(timestamp){
+
 }
 
 var newevent;
@@ -95,8 +103,11 @@ const handlers = {
     'StoreItemIntent': function () {
       var theuserid = newevent.session.user.userId;
 
-      // Get the item name and the location from user's intent invocation
       var article;
+
+      // Determine whether the article needs to be flipped and flip it.
+      //  for example, if a user described an object with "my", alexa should
+      //  respond with "your" (and visa versa)
       var flippedarticle;
       if (this.event.request.intent.slots.article!=null && !this.event.request.intent.slots.article){
         article = this.event.request.intent.slots.article.value;
@@ -105,6 +116,8 @@ const handlers = {
           article = "";
           flippedarticle = "";
       }
+
+      // Get the item name and the location from user's intent invocation
       var item = this.event.request.intent.slots.object.value;
       const location = this.event.request.intent.slots.prep.value + " "+
                         this.event.request.intent.slots.location.value;
@@ -137,8 +150,8 @@ const handlers = {
      * additional information.)
      */
     'RecallItemIntent': function () {
-      // Get the item name from the request
 
+      // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
@@ -158,6 +171,49 @@ const handlers = {
           }
 
 
+      }).catch(err => console.error(err));
+    },
+
+    /*
+     * The DeleteItemIntent is used to have Alexa remove an item fro mthe database.
+     * Alexa will respond with a confirmation of the deleted object or will notify the
+     * user that the object was not found in the DB.
+     */
+    'DeleteItemIntent': function () {
+
+      // Get the item name from the request
+      const item = this.event.request.intent.slots.object.value;
+      var theuserid = newevent.session.user.userId;
+
+
+      // Construct the request for the database
+      const dynamoParams = {
+              ConsistentRead: true,
+              Select: "ALL_ATTRIBUTES",
+              KeyConditionExpression: '#userid = :userid and #name = :name',
+              ExpressionAttributeNames: {
+                  "#userid": "userid",
+                  "#name": "name"
+              },
+              ExpressionAttributeValues: {
+                  ":userid": theuserid,
+                  ":name":item,
+              },
+              TableName:"MemoryManagerDB"
+      };
+      // Send the request to find the item from the database
+      docClient.query(dynamoParams).promise().then(data => {
+          var resultItem = data.Items[0];
+
+          if (resultItem != null) {
+            // Alexa deletes the item and responds
+            docClient.delete(dynamoParams).promise().catch(err => console.error(err));
+            this.emit(':tell', "I've deleted " + resultItem.article + " " + resultItem.name);
+          } else {
+            // If the item was not found in the database, Alexa tells the
+            // user that it doesn;t know this object.
+            this.emit(':tell', "I don't know about " + resultItem.article + " " + resultItem.name)
+          }
       }).catch(err => console.error(err));
     },
 
