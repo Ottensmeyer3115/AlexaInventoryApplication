@@ -35,39 +35,6 @@ function fliparticle(article) {
 }
 
 /*
-<<<<<<< HEAD
-  This method will take a timestamp and
-  convert it into a time that Alexa can speak.
-*/
-function speakableTime(timestamp){
-
-    var hour = parseInt(timestamp.substring(11, 13));
-    var minute = parseInt(timestamp.substring(14, 16));
-    var date = new Date(timestamp);
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-                        "Friday", "Saturday"];
-    const months = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-
-    // Convert 24 hour time to AM/PM
-    var AMPM = "AM";
-    hour++;
-    if (hour > 12) {
-      hour -= 12
-      AMPM = "PM";
-    }
-
-    // Prepare the minutes into a speakable format
-    if (minute == 0) {
-      minute = "O clock";
-    } else if (minute < 10) {
-      minute = "O " + minute;
-    }
-
-    var response = "On " + daysOfWeek[date.getDay()] + ", " + months[date.getMonth()] +
-                " " + date.getDate() + " at " + hour + " " + minute;
-    return response;
-=======
 * This item constructs the parameters for an item name and a userid
 */
 function createGetParams(item, theuserid){
@@ -88,7 +55,6 @@ function createGetParams(item, theuserid){
             TableName:"MemoryManagerDB"
     };
     return dynamoParams;
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
 }
 
 var newevent;
@@ -176,26 +142,8 @@ const handlers = {
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
-<<<<<<< HEAD
-      // Construct the request for the database
-      const dynamoParams = {
-              ConsistentRead: true,
-              Select: "ALL_ATTRIBUTES",
-              KeyConditionExpression: '#userid = :userid and #name = :name',
-              ExpressionAttributeNames: {
-                  "#userid": "userid",
-                  "#name": "name"
-              },
-              ExpressionAttributeValues: {
-                  ":userid": theuserid,
-                  ":name":item,
-              },
-              TableName:"MemoryManagerDB"
-      };
-=======
       var dynamoParams = createGetParams(item, theuserid);
 
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];

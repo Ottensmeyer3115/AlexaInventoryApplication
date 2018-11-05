@@ -35,60 +35,12 @@ function fliparticle(article) {
 }
 
 /*
-<<<<<<< HEAD
   This method will take a timestamp and
-  convert it into a time that Alexa can speak.
+  convert it into a readable time using a
+  regex.
 */
-function speakableTime(timestamp){
+function time(timestamp){
 
-    var hour = parseInt(timestamp.substring(11, 13));
-    var minute = parseInt(timestamp.substring(14, 16));
-    var date = new Date(timestamp);
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-                        "Friday", "Saturday"];
-    const months = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-
-    // Convert 24 hour time to AM/PM
-    var AMPM = "AM";
-    hour++;
-    if (hour > 12) {
-      hour -= 12
-      AMPM = "PM";
-    }
-
-    // Prepare the minutes into a speakable format
-    if (minute == 0) {
-      minute = "O clock";
-    } else if (minute < 10) {
-      minute = "O " + minute;
-    }
-
-    var response = "On " + daysOfWeek[date.getDay()] + ", " + months[date.getMonth()] +
-                " " + date.getDate() + " at " + hour + " " + minute;
-    return response;
-=======
-* This item constructs the parameters for an item name and a userid
-*/
-function createGetParams(item, theuserid){
-    // Construct the request for the database
-    const dynamoParams = {
-            /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
-            ConsistentRead: true,
-            Select: "ALL_ATTRIBUTES",
-            KeyConditionExpression: '#userid = :userid and #name = :name',
-            ExpressionAttributeNames: {
-                "#userid": "userid",
-                "#name": "name"
-            },
-            ExpressionAttributeValues: {
-                ":userid": theuserid,
-                ":name":item,
-            },
-            TableName:"MemoryManagerDB"
-    };
-    return dynamoParams;
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
 }
 
 var newevent;
@@ -129,29 +81,33 @@ const handlers = {
     'StoreItemIntent': function () {
       var theuserid = newevent.session.user.userId;
 
-      // Get the item name and the location from user's intent invocation
       var article;
+
+      // Determine whether the article needs to be flipped and flip it.
+      //  for example, if a user described an object with "my", alexa should
+      //  respond with "your" (and visa versa)
       var flippedarticle;
-      if (this.event.request.intent.slots.article!=null && !this.event.request.intent.slots.article){
+      if (this.event.request.intent.slots.article!=null){
         article = this.event.request.intent.slots.article.value;
         flippedarticle = fliparticle(article);
       } else {
           article = "";
           flippedarticle = "";
       }
+
+      // Get the item name and the location from user's intent invocation
       var item = this.event.request.intent.slots.object.value;
-      const location = this.event.request.intent.slots.prep.value + " "+
-                        this.event.request.intent.slots.location.value;
+      const location = this.event.request.intent.slots.location.value;
       const timestamp = this.event.request.timestamp;
 
       // Construct the verbal response that Alexa will give
       const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
-      console.log(speechOutput);
 
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"timestamp":timestamp}
+              Item: {"userid":theuserid,"name":item,"location":location,"article":article,
+                    "timestamp":timestamp}
       };
 
       // Send a request to insert the item to the database
@@ -171,12 +127,12 @@ const handlers = {
      * additional information.)
      */
     'RecallItemIntent': function () {
-      // Get the item name from the request
 
+      // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
 
-<<<<<<< HEAD
+
       // Construct the request for the database
       const dynamoParams = {
               ConsistentRead: true,
@@ -192,10 +148,6 @@ const handlers = {
               },
               TableName:"MemoryManagerDB"
       };
-=======
-      var dynamoParams = createGetParams(item, theuserid);
-
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
@@ -222,7 +174,6 @@ const handlers = {
 
       // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
-      const article = this.event.request.intent.slots.article.value;
       var theuserid = newevent.session.user.userId;
 
 
@@ -241,27 +192,18 @@ const handlers = {
               },
               TableName:"MemoryManagerDB"
       };
-
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
+
           if (resultItem != null) {
             // Alexa deletes the item and responds
-            var deleteparams = {
-                TableName: 'MemoryManagerDB',
-                Key: {
-                    "userid": theuserid,
-                    "name":item
-                },
-                ReturnValues: 'ALL_OLD'
-            };
-            docClient.delete(deleteparams).promise().catch(err => console.error(err));
-            this.emit(':tell', "I've deleted " +  fliparticle(article) + " "+ resultItem.name);
+            docClient.delete(dynamoParams).promise().catch(err => console.error(err));
+            this.emit(':tell', "I've deleted " + resultItem.article + " " + resultItem.name);
           } else {
             // If the item was not found in the database, Alexa tells the
             // user that it doesn;t know this object.
-
-            this.emit(':tell', "I don't know about " +fliparticle(article)+ " "+ item)
+            this.emit(':tell', "I don't know about " + resultItem.article + " " + resultItem.name)
           }
       }).catch(err => console.error(err));
     },

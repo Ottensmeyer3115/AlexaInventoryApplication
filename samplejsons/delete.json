@@ -2,7 +2,7 @@
 	"version": "1.0",
 	"session": {
 		"new": true,
-		"sessionId": "amzn1.echo-api.session.acc4c92d-10fd-496f-ac46-dff199ef527d",
+		"sessionId": "amzn1.echo-api.session.08571cbf-6390-4ae1-a624-93d5761105ae",
 		"application": {
 			"applicationId": "amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7"
 		},
@@ -23,7 +23,7 @@
 				"supportedInterfaces": {}
 			},
 			"apiEndpoint": "https://api.amazonalexa.com",
-			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTU0MTM3NjE3OSwiaWF0IjoxNTQxMzcyNTc5LCJuYmYiOjE1NDEzNzI1NzksInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdPTVlLTTY1TkVRMkpaVlNQVTJaWUk3S1pJN0NMSk01TzI0UllSUFkyQlRKT0dJQ0FIRVJJVldFUVlRNElNWDZOSFlCSEhIQ0lKWUlOQURCWlVNN0tBNTdJQko3TFNPSzZYS0hVVldXQzU2U0xLTktXQktLMlM0QU9JNFhRQ1FLUU5RSzNDVDRFRFo1TkVOQ0xTM0JBSzRKTlFSQVdQRk9XQ0JaVTJISzVCRVYzTkJaMldGTSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGSVNBVFc3QUJaSFcyNEhGR0ZUSU9QQ1BVN1pPVDIzRVVZSU9CUEhNTlhDM09HVFdPWTNIWTNJS1NRM0tHM0M3TjJaTktDN0NXSEdZVk1SQ1JHWkxJWUNMRlBDTkpSUVdJREZNU1BSRFFXTTVCTUZTWUdPSkNYVks0Q1I1STNFU1ZFV0dOWEZVTk1DVlNMSVpYNDdMS0hFQ1BKSlA0N1ZCMkJZWjZWWlFHTDNBRk9QMzVTSEVNNTVYUkc0TEhEN1hPNTQ3T0FOVjVDRjJYQSJ9fQ.H5MgpwcGmm8eTlaY95QnZZbfcuxsJkggscqGmy3zIKJ0SpRTu4XGn6XcVgUdC9nvUHZBz-k4UNdQKY-zeJO7U_cVNj75UYuOyqWvctEuy90SeV8tBDGkW7tbJ_VO_NTNDFybTDYfBEvELpLAT1D9jSWeahSdzXXwLAYG-0yLwXnuS57C4P3KXUyu2BgalpcI3gyDB3AxvEPIIw7m_U8BNs6D3b_tsSSs56Gqh8hj1cn11eUl7yIPoBkdk8XBwLPzctS3owan6UN3UEqr4g27dQ2hmcxFMO4oaRtYDAb9P2McOmF5tlqMOJtnHv9PvZqUk9Y9V1Rjd-E0mGEbNhNZ9A"
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQzYzNlODUyLTNiNjMtNDljNS05YzBkLTA1YmMxYjdlOTNkNyIsImV4cCI6MTU0MTM3NjYxMiwiaWF0IjoxNTQxMzczMDEyLCJuYmYiOjE1NDEzNzMwMTIsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdPTVlLTTY1TkVRMkpaVlNQVTJaWUk3S1pJN0NMSk01TzI0UllSUFkyQlRKT0dJQ0FIRVJJVldFUVlRNElNWDZOSFlCSEhIQ0lKWUlOQURCWlVNN0tBNTdJQko3TFNPSzZYS0hVVldXQzU2U0xLTktXQktLMlM0QU9JNFhRQ1FLUU5RSzNDVDRFRFo1TkVOQ0xTM0JBSzRKTlFSQVdQRk9XQ0JaVTJISzVCRVYzTkJaMldGTSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGSVNBVFc3QUJaSFcyNEhGR0ZUSU9QQ1BVN1pPVDIzRVVZSU9CUEhNTlhDM09HVFdPWTNIWTNJS1NRM0tHM0M3TjJaTktDN0NXSEdZVk1SQ1JHWkxJWUNMRlBDTkpSUVdJREZNU1BSRFFXTTVCTUZTWUdPSkNYVks0Q1I1STNFU1ZFV0dOWEZVTk1DVlNMSVpYNDdMS0hFQ1BKSlA0N1ZCMkJZWjZWWlFHTDNBRk9QMzVTSEVNNTVYUkc0TEhEN1hPNTQ3T0FOVjVDRjJYQSJ9fQ.irSNghjmvURhRmb3dfiQoSJJYOtfDnR5wJcJUSfZ8FLgrO6-KduOCtka5pj2-foZBa4fQa5Mc2odB_4UMPHM0-CDOf8_Sw_LIbDsW-45-4IHm0TAoqmNazrCsz-l7_ysGfY5DMn8x5lBHBcjLx9ZO9qtY2iD742SmnJUE8oCt8S-9awK93_2CluDomiGEnDvSDq0zcGzkq5zQoGnAEdLG8zdk-TE_tRcZJGut1_2jsVMov4fYNCrZcb5xRwiKF36sSLb2QYFNtXfO3k8MeK3qyaCKzBGt8HKLHRpohP6uWNK7_2erHlBPwYoWzew5IwaHLINvgLGaY56g7PwWHkXWA"
 		},
 		"Viewport": {
 			"experiences": [
@@ -47,61 +47,13 @@
 	},
 	"request": {
 		"type": "IntentRequest",
-		"requestId": "amzn1.echo-api.request.94e12689-2adb-42cd-8b6b-1ed6df8b0f88",
-		"timestamp": "2018-11-04T23:02:59Z",
+		"requestId": "amzn1.echo-api.request.e0db810a-5c0c-4500-9f81-6b65a71ea7d1",
+		"timestamp": "2018-11-04T23:10:12Z",
 		"locale": "en-US",
 		"intent": {
-			"name": "StoreItemIntent",
+			"name": "DeleteItemIntent",
 			"confirmationStatus": "NONE",
 			"slots": {
-				"prep": {
-					"name": "prep",
-					"value": "in",
-					"resolutions": {
-						"resolutionsPerAuthority": [
-							{
-								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.prep",
-								"status": {
-									"code": "ER_SUCCESS_MATCH"
-								},
-								"values": [
-									{
-										"value": {
-											"name": "in",
-											"id": "13b5bfe96f3e2fe411c9f66f4a582adf"
-										}
-									}
-								]
-							}
-						]
-					},
-					"confirmationStatus": "NONE",
-					"source": "USER"
-				},
-				"location": {
-					"name": "location",
-					"value": "the garage",
-					"resolutions": {
-						"resolutionsPerAuthority": [
-							{
-								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7.location",
-								"status": {
-									"code": "ER_SUCCESS_MATCH"
-								},
-								"values": [
-									{
-										"value": {
-											"name": "the garage",
-											"id": "075e59fc172113f815305d09c634f65e"
-										}
-									}
-								]
-							}
-						]
-					},
-					"confirmationStatus": "NONE",
-					"source": "USER"
-				},
 				"article": {
 					"name": "article",
 					"value": "my",
