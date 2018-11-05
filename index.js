@@ -170,6 +170,7 @@ const handlers = {
 
       // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
+      const article = this.event.request.intent.slots.article.value;
       var theuserid = newevent.session.user.userId;
 
 
@@ -188,18 +189,27 @@ const handlers = {
               },
               TableName:"MemoryManagerDB"
       };
+
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
-
           if (resultItem != null) {
             // Alexa deletes the item and responds
-            docClient.delete(dynamoParams).promise().catch(err => console.error(err));
-            this.emit(':tell', "I've deleted " + resultItem.article + " " + resultItem.name);
+            var deleteparams = {
+                TableName: 'MemoryManagerDB',
+                Key: {
+                    "userid": theuserid,
+                    "name":item
+                },
+                ReturnValues: 'ALL_OLD'
+            };
+            docClient.delete(deleteparams).promise().catch(err => console.error(err));
+            this.emit(':tell', "I've deleted " +  fliparticle(article) + " "+ resultItem.name);
           } else {
             // If the item was not found in the database, Alexa tells the
             // user that it doesn;t know this object.
-            this.emit(':tell', "I don't know about " + resultItem.article + " " + resultItem.name)
+
+            this.emit(':tell', "I don't know about " +fliparticle(article)+ " "+ item)
           }
       }).catch(err => console.error(err));
     },
