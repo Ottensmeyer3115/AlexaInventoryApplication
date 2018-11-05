@@ -36,11 +36,36 @@ function fliparticle(article) {
 
 /*
   This method will take a timestamp and
-  convert it into a readable time using a
-  regex.
+  convert it into a time that Alexa can speak.
 */
-function time(timestamp){
+function speakableTime(timestamp){
 
+    var hour = parseInt(timestamp.substring(11, 13));
+    var minute = parseInt(timestamp.substring(14, 16));
+    var date = new Date(timestamp);
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+                        "Friday", "Saturday"];
+    const months = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+    // Convert 24 hour time to AM/PM
+    var AMPM = "AM";
+    hour++;
+    if (hour > 12) {
+      hour -= 12
+      AMPM = "PM";
+    }
+
+    // Prepare the minutes into a speakable format
+    if (minute == 0) {
+      minute = "O clock";
+    } else if (minute < 10) {
+      minute = "O " + minute;
+    }
+
+    var response = "On " + daysOfWeek[date.getDay()] + ", " + months[date.getMonth()] +
+                " " + date.getDate() + " at " + hour + " " + minute;
+    return response;
 }
 
 var newevent;
@@ -131,7 +156,6 @@ const handlers = {
       // Get the item name from the request
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
-
 
       // Construct the request for the database
       const dynamoParams = {
