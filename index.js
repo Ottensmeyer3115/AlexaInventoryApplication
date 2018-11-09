@@ -35,7 +35,6 @@ function fliparticle(article) {
 }
 
 /*
-<<<<<<< HEAD
   This method will take a timestamp and
   convert it into a time that Alexa can speak.
 */
@@ -67,7 +66,8 @@ function speakableTime(timestamp){
     var response = "On " + daysOfWeek[date.getDay()] + ", " + months[date.getMonth()] +
                 " " + date.getDate() + " at " + hour + " " + minute;
     return response;
-=======
+  }
+/*
 * This item constructs the parameters for an item name and a userid
 */
 function createGetParams(item, theuserid){
@@ -88,7 +88,6 @@ function createGetParams(item, theuserid){
             TableName:"MemoryManagerDB"
     };
     return dynamoParams;
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
 }
 
 var newevent;
@@ -175,41 +174,23 @@ const handlers = {
 
       const item = this.event.request.intent.slots.object.value;
       var theuserid = newevent.session.user.userId;
+      var timestamp = this.event.request.timestamp;
 
-<<<<<<< HEAD
-      // Construct the request for the database
-      const dynamoParams = {
-              ConsistentRead: true,
-              Select: "ALL_ATTRIBUTES",
-              KeyConditionExpression: '#userid = :userid and #name = :name',
-              ExpressionAttributeNames: {
-                  "#userid": "userid",
-                  "#name": "name"
-              },
-              ExpressionAttributeValues: {
-                  ":userid": theuserid,
-                  ":name":item,
-              },
-              TableName:"MemoryManagerDB"
-      };
-=======
+      var timereadable = speakableTime(timestamp);
+
       var dynamoParams = createGetParams(item, theuserid);
 
->>>>>>> 077c0386b0058cf79fee5bad2a792f8ad1d5232f
       // Send the request to find the item from the database
       docClient.query(dynamoParams).promise().then(data => {
           var resultItem = data.Items[0];
-
           if (resultItem != null) {
             // Alexa responds with the location of the item
-            this.emit(':tell', "This item is " + resultItem.location);
+            this.emit(':tell', timereadable + ", you recorded this item " + resultItem.location);
           } else {
             // If the item was not found in the database, Alexa tells then
             // user that it doesn't know where the item is.
             this.emit(':tell', "I don't know where " + item + " is.")
           }
-
-
       }).catch(err => console.error(err));
     },
 
