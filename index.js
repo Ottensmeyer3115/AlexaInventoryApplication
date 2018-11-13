@@ -50,10 +50,17 @@ function speakableTime(timestamp){
     const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
+    // Conveniently convert the time into the local time by
+    // shady, broken, insecure means
+    hour -= 5;
+    if (hour < 0) {
+      hour += 24;
+    }
+
     // Convert 24 hour time to AM/PM
     var AMPM = "AM";
     if (hour > 12) {
-      hour -= 12
+      hour -= 12;
       AMPM = "PM";
     } else if (hour == 0) {
       hour = 12;
