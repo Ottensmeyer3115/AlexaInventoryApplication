@@ -39,7 +39,9 @@ function fliparticle(article) {
   convert it into a time that Alexa can speak.
 */
 function speakableTime(timestamp){
-
+    if (timestamp == null || timestamp == "") {
+      return "";
+    }
     var hour = parseInt(timestamp.substring(11, 13));
     var minute = parseInt(timestamp.substring(14, 16));
     var date = new Date(timestamp);
@@ -50,21 +52,22 @@ function speakableTime(timestamp){
 
     // Convert 24 hour time to AM/PM
     var AMPM = "AM";
-    hour++;
     if (hour > 12) {
       hour -= 12
       AMPM = "PM";
+    } else if (hour == 0) {
+      hour = 12;
     }
 
     // Prepare the minutes into a speakable format
     if (minute == 0) {
-      minute = "O clock";
+      minute = "";//"O clock";
     } else if (minute < 10) {
       minute = "O " + minute;
     }
 
     var response = "On " + daysOfWeek[date.getDay()] + ", " + months[date.getMonth()] +
-                " " + date.getDate() + " at " + hour + " " + minute;
+                " " + date.getDate() + " at " + hour + " " + minute + " " + AMPM;
     return response;
   }
 /*
