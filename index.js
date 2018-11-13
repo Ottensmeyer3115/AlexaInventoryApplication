@@ -134,7 +134,7 @@ const handlers = {
       // Get the item name and the location from user's intent invocation
       var article;
       var flippedarticle;
-      if (this.event.request.intent.slots.article!=null && !this.event.request.intent.slots.article){
+      if (this.event.request.intent.slots.article!=null || !this.event.request.intent.slots.article){
         article = this.event.request.intent.slots.article.value;
         flippedarticle = fliparticle(article);
       } else {
@@ -142,9 +142,11 @@ const handlers = {
           flippedarticle = "";
       }
       var item = this.event.request.intent.slots.object.value;
-      const location = this.event.request.intent.slots.prep.value + " "+
+      var location = this.event.request.intent.slots.prep.value + " "+
                         this.event.request.intent.slots.location.value;
       const timestamp = this.event.request.timestamp;
+
+      location = location.replace(new RegExp(" my ", 'g')," your ");
 
       // Construct the verbal response that Alexa will give
       const speechOutput = "You put "+ flippedarticle + " " + item + " " + location + ".";
@@ -192,7 +194,7 @@ const handlers = {
           } else {
             // If the item was not found in the database, Alexa tells then
             // user that it doesn't know where the item is.
-            this.emit(':tell', "I don't know where " + item + " is.")
+            this.emit(':tell', "I don't know where " +fliparticle(resultItem.article) + item + " is.")
           }
       }).catch(err => console.error(err));
     },
