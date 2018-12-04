@@ -2,6 +2,9 @@
 // https://github.com/bignerdranch/developing-alexa-skills-solutions/blob/master/4_persistence/solution/cakebaker/database_helper.js
 
 'use strict';
+var newevent;
+
+const echol = require('echolocate');
 const appId = 'amzn1.ask.skill.43c3e852-3b63-49c5-9c0d-05bc1b7e93d7';
 const APP_ID = appId;
 
@@ -49,13 +52,14 @@ function speakableTime(timestamp){
                         "Friday", "Saturday"];
     const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
-
     // Conveniently convert the time into the local time by
     // shady, broken, insecure means
     hour -= 5;
     if (hour < 0) {
       hour += 24;
     }
+
+    
 
     // Convert 24 hour time to AM/PM
     var AMPM = "AM";
@@ -83,7 +87,6 @@ function speakableTime(timestamp){
 function createGetParams(item, theuserid){
     // Construct the request for the database
     const dynamoParams = {
-            /*Key:{"userid":{"N":"12"},"name":{"S":"my keys"}},*/
             ConsistentRead: true,
             Select: "ALL_ATTRIBUTES",
             KeyConditionExpression: '#userid = :userid and #name = :name',
@@ -100,7 +103,6 @@ function createGetParams(item, theuserid){
     return dynamoParams;
 }
 
-var newevent;
 
 const handlers = {
     /*
