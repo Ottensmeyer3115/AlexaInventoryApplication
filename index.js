@@ -81,6 +81,7 @@ function speakableTime(timestamp){
                 " " + date.getDate() + " at " + hour + " " + minute + " " + AMPM;
     return response;
   }
+  
 /*
 * This item constructs the parameters for an item name and a userid
 */
@@ -127,7 +128,7 @@ const handlers = {
       // send the request to the database. The result will be stored in data
       docClient.scan(dynamoParams).promise().then(data => {
         // respond to the user with the result of the query
-        this.emit(':tell', "Memory manger is remembering " + data.Count + " items for you.");
+        this.emit(':tell', "Memory Manager is remembering " + data.Count + " items for you.");
       }).catch(err => console.error(err));
 
     },
@@ -164,7 +165,7 @@ const handlers = {
       // Construct the database request
       const dynamoParams = {
               TableName: "MemoryManagerDB",
-              Item: {"userid":theuserid,"name":item,"location":location,"timestamp":timestamp}
+              Item: {"userid":theuserid,"name":item,"location":location,"timestamp":timestamp, "article":article}
       };
 
       // Send a request to insert the item to the database
@@ -199,7 +200,7 @@ const handlers = {
           var resultItem = data.Items[0];
           if (resultItem != null) {
             // Alexa responds with the location of the item
-            this.emit(':tell', timereadable + ", you recorded this item " + resultItem.location);
+            this.emit(':tell', timereadable + ", you recorded " + resultItem.article + " " + resultItem.name + " " + resultItem.location);
           } else {
             // If the item was not found in the database, Alexa tells then
             // user that it doesn't know where the item is.
@@ -256,9 +257,30 @@ const handlers = {
             // If the item was not found in the database, Alexa tells the
             // user that it doesn;t know this object.
 
-            this.emit(':tell', "I don't know about " +fliparticle(article)+ " "+ item)
+            this.emit(':tell', "I don't know about " + fliparticle(article) + " " + item)
           }
       }).catch(err => console.error(err));
+    },
+
+    /*
+     * The ListIntent is used to have Alexa list all Items
+     * that are currently being stored in DynamoDB.
+     */
+    'ListIntent': function () {
+      // Construct the request for the database
+      const dynamoParams = {
+            TableName: "MemoryManagerDB",
+            AttributesToGet: ["name", "article"],
+            Select: "SPECIFIC_ATTRIBUTES"
+          };
+
+          // send the request to the database. The result will be stored in data
+          docClient.scan(dynamoParams).promise().then(data => {
+            // respond to the user with the result of the query
+            this.emit(':tell', "Memory Manager is remembering the following items for you: "
+                                  + data.Select.AttributesToGet.article +  " " + data.Select.AttributesToGet.name);
+          }).catch(err => console.error(err));
+
     },
 
     /*
